@@ -1,0 +1,237 @@
+/* global.css boilerplate */
+html, body {
+    font-family: "Inter", 'Roboto', 'Open Sans', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.125;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+/* normalize */
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.link {
+    color: #0966ca;
+	font-size: 17px;
+}
+.link:hover {
+	text-decoration: underline;
+}
+ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.hide {
+    display: none!important;
+    opacity: 0!important;
+    visibility: hidden!important;
+    pointer-events: none!important;
+}
+
+/* font faces */
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/inter/Inter-Regular.woff2?v=3.11") format("woff2"),
+       url("../fonts/inter/Inter-Regular.woff?v=3.11") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/inter/Inter-Medium.woff2?v=3.11") format("woff2"),
+       url("../fonts/inter/Inter-Medium.woff?v=3.11") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/inter/Inter-SemiBold.woff2?v=3.11") format("woff2"),
+       url("../fonts/inter/Inter-SemiBold.woff?v=3.11") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/inter/Inter-Bold.woff2?v=3.11") format("woff2"),
+       url("../fonts/inter/Inter-Bold.woff?v=3.11") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/inter/Inter-ExtraBold.woff2?v=3.11") format("woff2"),
+       url("../fonts/inter/Inter-ExtraBold.woff?v=3.11") format("woff");
+}
+
+
+/* = Spacing = */
+.space-top-very-small {
+    margin-top: 10px;
+}
+.space-top-small {
+    margin-top: 20px;
+}
+.space-top {
+    margin-top: 30px;
+}
+.space-top-semi-large {
+	margin-top: 45px;
+}
+.space-top-large {
+    margin-top: 60px;
+}
+.space-top-very-large {
+    margin-top: 90px;
+}
+.space-top-huge {
+    margin-top: 120px;
+}
+.space-top-gigantic {
+    margin-top: 150px;
+}
+.space-bottom-very-small {
+	margin-bottom: 10px;
+}
+.space-bottom-small {
+	margin-bottom: 20px;
+}
+.space-bottom {
+	margin-bottom: 30px;
+}
+.space-bottom-semi-large {
+	margin-bottom: 45px;
+}
+.space-bottom-large {
+	margin-bottom: 60px;
+}
+.space-bottom-very-large {
+	margin-bottom: 90px;
+}
+.space-bottom-huge {
+	margin-bottom: 120px;
+}
+.space-bottom-gigantic {
+	margin-bottom: 150px;
+}
+.space-left-tiny {
+    margin-left: 5px;
+}
+
+
+/* layout */
+.container, .container-large, .container-very-large, .text, .wrapper {
+    display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+.row {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.section {
+	width: 100%;
+	padding: 7% 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	z-index: 2;
+	position: relative;
+}
+.section.full {
+    height: 100vh;
+    padding: 0!important;
+    background-color: #f7f7f7;
+}
+.container {
+	width: calc(100% - 44px);
+	max-width: 1068px;
+	padding: 0 22px;
+}
+.container-large {
+    width: calc(100% - 44px);
+	max-width: 1360px;
+	padding: 0 22px;
+}
+.container-very-large {
+    width: calc(100% - 44px);
+	max-width: 1440px;
+	padding: 0 22px;
+}
+.wrapper {
+    width: 100%;
+}
+.text {
+	width: auto;
+	max-width: 550px;
+}
+.text.very-large {
+    max-width: 700px;
+}
+.text.align-center {
+    text-align: center;
+}
+.align-center {
+    align-items: center;
+}
+.caption-block {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.caption-block p {
+    font-size: 14px;
+    color: #111;
+}
+
+.grid {
+	width: 100%;
+	display: grid;
+	grid-gap: 20px;
+}
+.grid-overflow {
+	width: 100%;
+	overflow-x: scroll;
+}
+.grid-1 {
+	grid-template-columns: auto;
+}
+.grid-2 {
+	grid-template-columns: auto auto;
+}
+.grid-3 {
+	grid-template-columns: auto auto auto;
+}
+.grid-4 {
+	grid-template-columns: auto auto auto auto;
+}
+.grid-5 {
+	grid-template-columns: auto auto auto auto auto;
+}
+.grid-6 {
+	grid-template-columns: auto auto auto auto auto auto;
+}
+.gap-1 {
+	grid-gap: 1px;
+}
+.gap-10 {
+	grid-gap: 10px;
+}
+.gap-30 {
+	grid-gap: 30px;
+}
+

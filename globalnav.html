@@ -1,0 +1,384 @@
+<link rel="stylesheet" type="text/css" href="https://athena.fiveatoms.com/assets/css/global.css">
+<style>
+	.mx-globalnav {
+		width: 100%;
+		height: 44px;
+		background-color: white;
+		box-shadow: 0 1px 0 0 #ebebeb;
+		z-index: 999999999;
+		transition: 0.3s ease-in-out;
+		
+		position: sticky;
+		top: 0;
+	}
+	.mx-gn-content {
+		margin: 0 auto;
+		height: 100%;
+		max-width: 980px;
+		padding: 0 22px;
+		position: relative;
+	}
+	.mx-gn-content-list {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+	}
+	.mx-gn-content-list .mx-gn-list-item {
+		height: 100%;
+	}
+	.mx-gn-content-list .mx-gn-list-item .mx-gn-link {
+		font-size: 13px;
+		line-height: 44px;
+		font-weight: 400;
+		padding: 0 10px;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: black;
+		transition: 0.2s ease-in-out;
+	}
+	.mx-gn-content-list .mx-gn-list-item a:hover {
+		opacity: 0.8;
+	}
+	.mx-gn-logo {
+		height: 44px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.mx-gn-logo svg {
+		width: 33px;
+	}
+	.mx-gn-menu-button-container {
+		position: relative;
+		height: 44px;
+	}
+	.mx-gn-menu {
+		padding: 0;
+		margin: 0;
+		
+		display: none;
+		visibility: hidden;
+		opacity: 0;
+	}
+	.mx-gn-menu-button {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 10px;
+	}
+	.mx-gn-menu-button[aria-expanded='true']+.mx-gn-menu {
+		position: absolute;
+		display: flex;
+		visibility: visible;
+		opacity: 1;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		top: 50px;
+		right: 10px;
+		width: 150px;
+		background-color: white;
+		overflow: hidden;
+		border-radius: 5px;
+		z-index: 999999999999;
+		box-shadow: 0 2px 20px -9px rgba(0, 0, 0, 0.3);
+	}
+	.mx-gn-menu li {
+		width: 150px;
+		display: flex;
+	}
+	.mx-gn-menu li a {
+		width: 150px;
+		padding: 10px 20px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+		color: #000;
+		text-align: left;
+		transition: 0.1s ease-in-out;
+	}
+	.mx-gn-menu li a:hover {
+		color: white;
+		background-color: #0069ff;
+	}
+	.mx-gn-menu li:last-child a {
+		border-bottom: none;
+	}
+	
+	.mx-gn-menu-button[aria-expanded='true'] .mx-gn-menu-button-bar.top {
+		transform: translateY(4px) rotate(45deg);
+	}
+	.mx-gn-menu-button[aria-expanded='true'] .mx-gn-menu-button-bar.bottom {
+		transform: translateY(-4px) rotate(-45deg);
+	}
+	.mx-gn-menu-button-bars {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.mx-gn-menu-button-bar {
+		width: 15px;
+		height: 1px;
+		background-color: black;
+		transition: 0.2s ease-in-out;
+	}
+	.mx-gn-menu-button-bar.top {
+		transform: translateY(0) rotate(0);
+	}
+	.mx-gn-menu-button-bar.bottom {
+		margin-top: 7px;
+		transform: translateY(0) rotate(0);
+	}
+	
+	.mobile-only {
+		display: none;
+		visibility: hidden;
+		pointer-events: none;
+	}
+	@media only screen and (max-width: 770px) {
+		.desktop-only, .mx-gn-list-item {
+			display: none;
+			visibility: hidden;
+			pointer-events: none;
+		}
+		.mobile-only, .mx-gn-list-item.always {
+			display: block;
+			visibility: visible;
+			pointer-events: auto;
+		}
+	}
+	.mx-gn-item {
+		height: 44px;
+	}
+	.mx-gn-mobile-menu {
+		padding: 0;
+		margin: 0;
+		
+		display: none;
+		visibility: hidden;
+		opacity: 0;
+	}
+	.mx-gn-mobile-menu-button[aria-expanded='true'] .mx-gn-menu-button-bar.top {
+		transform: translateY(4px) rotate(45deg);
+	}
+	.mx-gn-mobile-menu-button[aria-expanded='true'] .mx-gn-menu-button-bar.bottom {
+		transform: translateY(-4px) rotate(-45deg);
+	}
+	.mx-gn-mobile-menu-button[aria-expanded='true']+.mx-gn-mobile-menu {
+		position: absolute;
+		display: flex;
+		visibility: visible;
+		opacity: 1;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+		top: 45px;
+		left: 0;
+		padding: 30px 22px;
+		width: calc(100vw - 44px);
+		height: calc(100vh - 105px);
+		overflow-y: scroll;
+		background-color: white;
+		overflow: hidden;
+		z-index: 999;
+	}
+	.mx-gn-mobile-list {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		margin-bottom: 30px;
+	}
+	.mx-gn-mobile-list:last-child {
+		margin-bottom: 0;
+	}
+	.mx-gn-mobile-list li {
+		width: 100%;
+	}
+	.mx-gn-mobile-list-item-category {
+		margin-bottom: 10px;
+	}
+	.mx-gn-mobile-list-item-category span {
+		color: #666;
+	}
+	.mx-gn-mobile-list li a {
+		width: 100%;
+		display: flex;
+		color: black;
+		font-size: 20px;
+		line-height: 1.4;
+		font-weight: 600;
+		padding: 10px 0px;
+		border-bottom: 1px solid #e6e6e6;
+		transition: 0.2s ease-in-out;
+	}
+	.mx-gn-mobile-list li a:hover {
+		opacity: 0.7;
+	}
+</style>
+
+
+<body>
+	<nav class="mx-globalnav" id="mx-gn">
+		<div class="mx-gn-content">
+			<ul class="mx-gn-content-list">
+				<li class="mx-gn-list-item always">
+					<a href="#" class="mx-gn-logo">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0, 0, 1420, 1080"> <g id="Layer_1"> <g> <path d="M709.672,936.045 C594.758,936.045 501.602,842.572 501.602,727.267 C501.602,611.962 594.758,518.489 709.672,518.489 C824.586,518.489 917.741,611.962 917.741,727.267 C917.741,842.572 824.586,936.045 709.672,936.045 z" fill="#000000"/> <g> <path d="M140.681,416.023 C67.541,393.218 26.674,315.238 49.402,241.85 C72.129,168.461 149.845,127.455 222.984,150.26 C296.124,173.065 336.991,251.045 314.263,324.433 C291.536,397.822 213.82,438.828 140.681,416.023 z" fill="#000000"/> <path d="M291.824,396.508 L316.359,369.984 C319.486,366.604 324.752,366.407 328.121,369.544 L538.945,565.89 C542.314,569.027 542.511,574.311 539.384,577.692 L514.849,604.216 C511.722,607.596 506.456,607.793 503.087,604.656 L292.262,408.31 C288.893,405.172 288.697,399.888 291.824,396.508 z" fill="#000000"/> </g> <path d="M1279.319,416.023 C1352.458,393.218 1393.326,315.238 1370.598,241.849 C1347.871,168.461 1270.155,127.455 1197.016,150.26 C1123.876,173.064 1083.009,251.045 1105.737,324.433 C1128.464,397.822 1206.18,438.828 1279.319,416.023 z" fill="#000000"/> <path d="M1128.176,396.508 L1103.641,369.984 C1100.515,366.604 1095.248,366.407 1091.879,369.544 L881.055,565.89 C877.686,569.027 877.49,574.311 880.617,577.692 L905.151,604.216 C908.278,607.596 913.544,607.793 916.914,604.656 L1127.738,408.31 C1131.107,405.172 1131.303,399.888 1128.176,396.508 z" fill="#000000"/> </g> </g> </svg>
+					</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/services" class="mx-gn-link">Services</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/design" class="mx-gn-link">Design</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/development" class="mx-gn-link">Development</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/marketing" class="mx-gn-link">Marketing</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/about" class="mx-gn-link">About</a>
+				</li>
+				<li class="mx-gn-list-item">
+					<a href="/contact" class="mx-gn-link">Contact</a>
+				</li>
+				<li class="mx-gn-menu-button-container desktop-only">
+					<a href="#" class="mx-gn-menu-button" aria-expanded="false">
+						<div class="mx-gn-menu-button-bars">
+							<div class="mx-gn-menu-button-bar top"></div>
+							<div class="mx-gn-menu-button-bar bottom"></div>
+						</div>
+					</a>
+					<ul class="mx-gn-menu">
+						<li>
+							<a href="/process">Process</a>
+						</li>
+						<li>
+							<a href="/portfolio">Portfolio</a>
+						</li>
+						<li>
+							<a href="/blog">Blog</a>
+						</li>
+						<li>
+							<a href="/faq">FAQ</a>
+						</li>
+						<li>
+							<a href="/privacy">Privacy</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mx-gn-item mobile-only">
+					<a href="#" class="mx-gn-mobile-menu-button" aria-expanded="false">
+						<div class="mx-gn-menu-button-bars">
+							<div class="mx-gn-menu-button-bar top"></div>
+							<div class="mx-gn-menu-button-bar bottom"></div>
+						</div>
+					</a>
+					<div class="mx-gn-mobile-menu">
+						<ul class="mx-gn-mobile-list">
+							<li class="mx-gn-mobile-list-item-category">
+								<span>Services</span>
+							</li>
+							<li>
+								<a href="/design">Design</a>
+							</li>
+							<li>
+								<a href="/development">Development</a>
+							</li>
+							<li>
+								<a href="/marketing">Marketing</a>
+							</li>
+							<li>
+								<a href="/process">Process</a>
+							</li>
+							<li>
+								<a href="/services">Our services</a>
+							</li>
+						</ul>
+						<ul class="mx-gn-mobile-list">
+							<li class="mx-gn-mobile-list-item-category">
+								<span>Company</span>
+							</li>
+							<li>
+								<a href="/portfolio">Portfolio</a>
+							</li>
+							<li>
+								<a href="/blog">Blog</a>
+							</li>
+							<li>
+								<a href="/about">About</a>
+							</li>
+						</ul>
+						<ul class="mx-gn-mobile-list">
+							<li class="mx-gn-mobile-list-item-category">
+								<span>FiveAtoms</span>
+							</li>
+							<li>
+								<a href="/contact">Contact us</a>
+							</li>
+							<li>
+								<a href="/faq">FAQ</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div style="height:1000vh"></div>
+	<script src="https://athena.fiveatoms.com/assets/js/lib/jquery.js" charset="utf-8"></script>
+	<script>
+		// header dropdown menus
+		$('.mx-gn-menu-button:not(:only-child)').click(function(e) {
+			if ($(this).attr("aria-expanded") == "true") {
+				$(".mx-gn-menu-button").attr("aria-expanded","false");
+			} else {
+				$(".mx-gn-menu-button").attr("aria-expanded","false");
+				$(this).attr("aria-expanded","true");
+				e.stopPropagation();   
+			}
+		});
+		
+		$('html').click(function() {
+			$(".mx-gn-menu-button").attr("aria-expanded","false");
+		});
+		
+		// mobile menu
+		$('.mx-gn-mobile-menu-button:not(:only-child)').click(function(e) {
+			if ($(this).attr("aria-expanded") == "true") {
+				$(".mx-gn-mobile-menu-button").attr("aria-expanded","false");
+			} else {
+				$(".mx-gn-mobile-menu-button").attr("aria-expanded","false");
+				$(this).attr("aria-expanded","true");
+				e.stopPropagation();   
+			}
+		});
+		
+		
+		// hide/show mx-gn on scroll
+		var prevScrollpos = window.pageYOffset;
+		window.onscroll = function() {
+			var currentScrollPos = window.pageYOffset;
+			if (prevScrollpos > currentScrollPos) {
+				document.getElementById("mx-gn").style.top = "0";
+			} else {
+				document.getElementById("mx-gn").style.top = "-45px";
+				if ($(".mx-gn-menu-button").attr("aria-expanded") == "true") {
+					$(".mx-gn-menu-button").attr("aria-expanded","false");
+				}
+			}
+			prevScrollpos = currentScrollPos;
+		}
+	</script>
+	
+</body>
